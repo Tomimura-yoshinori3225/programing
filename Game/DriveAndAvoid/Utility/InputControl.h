@@ -20,8 +20,8 @@ public:
 
 	//トリガー入力所得処理
 
-	static Vector2D GetLeftTigger();   //左トリガー
-	static Vector2D GetRightTigger();   //右トリガー
+	static Vector2D GetLeftTrigger();   //左トリガー
+	static Vector2D GetRightTrigger();   //右トリガー
 
 	//スティック入力取得処理
 	static Vector2D GetLeftStick();    //左スティック
