@@ -21,8 +21,11 @@ public:
 	void Update();                    //更新処理
 	void Finalize();                  //終了時処理
 
-privare: 
+private: 
 	void  Draw() const;             //描画処理
+	void ChangeScene(eSceneType scene_type);      //シーン切り替え処理
+	SceneBase* CreateScene(eSceneType scene_type);   //シーン生成処理
+
 
 };
 
