@@ -10,15 +10,17 @@ private:
 	int high_score;       //ハイスコア
 	int back_ground;      //背景画像
 	int barrier_image;    //バリア画像
-	int mikeage;          //走行距離
+	int mileage;          //走行距離
 	int enemy_image[3];   //敵画像
 	int enemy_count[3];   //通り過ぎた敵カウント
-	player* player;       //プレイヤー
+	Player* player;       //プレイヤー
 	Enemy** enemy;        //敵
 
 public:
 	GameMainScene();
 	virtual ~GameMainScene();
+
+	virtual void Initialize() override;
 	virtual eSceneType Update() override;
 	virtual void Draw() const override;
 	virtual void Finalize() override;
@@ -27,7 +29,7 @@ public:
 
 private:
 	//ハイスコア読み込み
-	void ReadHighScene();
+	void ReadHighScore();
 	//当たり判定
 	bool IsHitCheck(Player* p, Enemy* e);
 

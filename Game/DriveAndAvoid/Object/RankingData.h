@@ -1,6 +1,6 @@
 #pragma once
 
-class RankingDate
+class RankingData
 {
 private:
 	int score[6];       //スコアデータ
@@ -8,8 +8,8 @@ private:
 	char name[6][15];   //名前データ
 
 public:
-	RankingDate();
-	~RankingDate();
+	RankingData();
+	~RankingData();
 
 	void Initialize();     //初期処理
 	void Finalize();       //終了処理

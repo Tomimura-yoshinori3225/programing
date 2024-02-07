@@ -11,7 +11,7 @@ enemy(nullptr)
 	for (int i = 0; i < 3; i++)
 	{
 		enemy_image[i] = NULL;
-		enemy_const[i] = NULL;
+		enemy_count[i] = NULL;
 	}
 }
 
@@ -19,7 +19,7 @@ enemy(nullptr)
 void GameMainScene::Initialize()
 {
 	//高得点値を読み込む
-	ReadHIghScore();
+	ReadHighScore();
 
 	//画像読み込み
 	back_ground = LoadGraph("Resource/images/back.dmp");
@@ -28,7 +28,7 @@ void GameMainScene::Initialize()
 		enemy_image);
 
 	//エラーチェック
-	if (back_Ground == -1)
+	if (back_ground == -1)
 	{
 		throw("Resource/image/back.dmpがありません`n");
 	}
@@ -41,11 +41,11 @@ void GameMainScene::Initialize()
 		throw("Resource/image/barrier.pigがありません`n");
 	}
 	//オブジェクトの生成
-	Player = new Player;
+	player = new Player;
 	enemy = new Enemy * [10];
 
 	//オブジェクトの初期化
-	Player->Initialize();
+	player->Initialize();
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -57,7 +57,7 @@ void GameMainScene::Initialize()
 eSceneType GameMainScene::Update()
 {
 	//プレイヤーの更新
-	Player->Update();
+	player->Update();
 
 	//移動距離の更新
 	mileage += (int)player->GetSpeed
@@ -134,22 +134,22 @@ void GameMainScene::Draw()const
 
 	//UIの描画
 	DrawBox(500, 0, 640, 480, GetColor(0, 153, 0), TRUE);
-	SetFotSize(16);
+	SetFontSize(16);
 	DrawFormatString(510, 20, GetColor(0, 0, 0), "ハイスコア");
 	DrawFormatString(560, 40, GetColor(255, 255, 255), "%08d", high_score);
 	DrawFormatString(560, 80, GetColor(0, 0, 0), "避けた数");
 	for (int i = 0; i < 3; i++)
 	{
 		DrawRotaGraph(523 + (i * 50), 120, 0.3, 0, enemy_image[i], TRUE, FALSE);
-		DrawRotaGraph(510 + (i * 50), 140, GetColor(255, 255, 255),
-			"%03d", enemy_image[i]);
+		DrawFormatString(510 + (i * 50), 140, GetColor(255, 255, 255),
+			"%03d", enemy_count[i]);
 
 	}
 	DrawFormatString(510, 200, GetColor(0, 0, 0), "走行距離");
 	DrawFormatString(555, 200, GetColor(255, 255, 255), "%08d", mileage / 10);
 	DrawFormatString(510, 240, GetColor(0, 0, 0), "スピード");
-	DrawFormatString(555, 200, GetColor(255, 255, 255), "%08.1f"
-		player->GetSpeed();
+	DrawFormatString(555, 200, GetColor(255, 255, 255), "%08.1f",
+		player->GetSpeed());
 
 	//バリア枚数の描画
 	for (int i = 0; i < player->GetBarriarCount(); i++)
@@ -180,7 +180,7 @@ void GameMainScene::Draw()const
 		int score = (mileage / 10 * 10);
 		for (int i = 0; i < 3; i++)
 		{
-			score += (i + 1) * 50 * enemy_counst[i];
+			score += (i + 1) * 50 * enemy_count[i];
 		}
 
 		//リザルトデータの書き込み
@@ -196,12 +196,12 @@ void GameMainScene::Draw()const
 		}
 
 		//スコアを保存
-		fprintf(fp, "%d,`n", enemy_count[i]);
+		fprintf(fp, "%d,\n", score);
 
 		//避けた数と得点を保存
 		for (int i = 0; i < 3; i++)
 		{
-			fprintf(fp, "%d,`n", enemy_count[i]);
+			fprintf(fp, "%d,\n", enemy_count[i]);
 		}
 
 		//ファイルクローズ
@@ -221,34 +221,33 @@ void GameMainScene::Draw()const
 			}
 		}
 		delete[] enemy;
+	}
 
-		//現在のシーンを取得
-		eSceneType GameMainScene::GetNowScene() const
+	//現在のシーンを取得
+	eSceneType GameMainScene::GetNowScene() const
+	{
+		return eSceneType::E_MAIN;
+	}
+
+	//ハイスコアの読み込み
+	void GameMainScene::ReadHighScore()
+	{
+		RankingData data;
+		data.Initialize();
+
+		high_score = data.GetScore(0);
+
+		data.Finalize();
+	}
+
+	//当たり判定処理（プレイヤーと敵）
+	bool GameMainScene::IsHitCheck(Player* p, Enemy* e)
+	{
+		//プレイヤーがバリアを貼っていたら、当たり判定を無視する
+		if (p -> IsBarrier())
 		{
-			return eSceneType::E_MAIN;
+			return false;
 		}
-
-		//ハイスコアの読み込み
-		void GameMainScene::ReadHighScere()
-		{
-			RankingData data;
-			data.Initialize();
-
-			high_score = data.GetScore(0);
-
-			data.Finalize();
-		}
-
-		//当たり判定処理（プレイヤーと敵）
-		bool GameMainScene::IsHitCheck(Player* p, Enemy* e)
-		{
-			//プレイヤーがバリアを貼っていたら、当たり判定を無視する
-			if (p - IsBarrier())
-			{
-				return false;
-			}
-		}
-
 		//敵情報が無ければ、当たり判定を無視する
 		if (e == nullptr)
 		{
@@ -264,6 +263,5 @@ void GameMainScene::Draw()const
 		//コリジョンデータより位置情報の差分が小さいなら、ヒット判定とする
 		return ((fabsf(diff_location.x) < box_ex.x) && (fabsf(diff_location.y)
 			< box_ex.y));
-	}
 
-	
+	}

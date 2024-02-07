@@ -18,7 +18,7 @@ ResultScene::~ResultScene()
 }
 
 //‰Šú‰»ˆ—
-viod ResultScene::Initialize()
+void ResultScene::Initialize()
 {
 	//‰æ‘œ‚Ì“Ç‚İ‚İ
 	back_ground = LoadGraph("Resource/images/back.bmp");
@@ -69,7 +69,7 @@ void ResultScene::Draw() const
 	for (int i = 0; i < 3; i++)
 	{
 		DrawRotaGraph(230, 230 + (i * 20), 0.3f, DX_PI_F / 2, enemy_image[i], TRUE);
-		DrawFormatString(260, 222, +(i * 21), GetColor(255, 255, 255),
+		DrawFormatString(260, 222 +(i * 21), GetColor(255, 255, 255),
 			"%6d x %4d=%6d",
 			enemy_count[i], (i + 1) * 50, (i + 1) * 50 * enemy_count[i]);
 	}
@@ -81,7 +81,7 @@ void ResultScene::Draw() const
 void ResultScene::Finalize()
 {
 	//“Ç‚İ‚ñ‚¾‰æ‘œ‚ğíœ
-	DeleteGraph(back_groud);
+	DeleteGraph(back_ground);
 	for (int i = 0; i < 3; i++)
 	{
 		DeleteGraph(enemy_image[i]);
@@ -111,7 +111,7 @@ void ResultScene::ReadResultData()
 	fscanf_s(fp, "%6d,`n", &score);
 
 	//”ğ‚¯‚½”‚Æ“¾“_‚ğæ“¾
-	for (int i = 0; i < 3, i++)
+	for (int i = 0; i < 3; i++)
 	{
 		fscanf_s(fp, "%6d`n", &enemy_count[i]);
 	}

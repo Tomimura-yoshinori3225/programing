@@ -26,11 +26,11 @@ void RankingDispScene::Initialize()
 
 	//ランキング情報を取得
 	ranking = new RankingData;
-	ranking->Initiailze();
+	ranking->Initialize();
 }
 
 //更新処理
-eSceneType RankingDispScene::Update()
+eSceneType RankingDispScene::Updata()
 {
 	//Bボタンがおされたら、タイトルに戻る
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_B))
@@ -50,7 +50,7 @@ void RankingDispScene::Draw() const
 	for (int i = 0; i < 5; i++)
 	{
 		DrawFormatString(50, 170 + i * 25, 0xffffff, "%2d %-15s %6d",
-			ranking->Getrank(i), ranking->GetName(i), ranking->GetScere(i));
+			ranking->GetRank(i), ranking->GetName(i), ranking->GetScore(i));
 	}
 }
 
@@ -61,7 +61,7 @@ void RankingDispScene::Finalize()
 	DeleteGraph(background_image);
 
 	//動的メモリの解放
-	ranking->Fianlize();
+	ranking->Finalize();
 	delete ranking;
 }
 
