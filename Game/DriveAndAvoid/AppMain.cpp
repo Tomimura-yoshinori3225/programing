@@ -8,8 +8,7 @@
 #include "Scene/SceneManager.h"
 
 //メイン関数（プログラムはここから始まります。）
-int WINAPI WinMain(_In_HINSTANCE hinstance, _In_opt_HINSTANCE hprevInstance,
-	_In_LPSTR lpCmdLine, _In_int nCmdshow)
+int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hprevInstance,_In_ LPSTR lpCmdLine, _In_ int nCmdshow)
 {
 	//例外処理（異常が発生したら、catch文に飛びます）
 	try

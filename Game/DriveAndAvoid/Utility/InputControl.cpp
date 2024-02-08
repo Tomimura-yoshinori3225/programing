@@ -79,8 +79,7 @@ bool InputControl::GetButtonDown(int button)
 //ボタン取得：離した瞬間
 bool InputControl::GetButtonUp(int button)
 {
-	return CheckButtonRange(button) && (!now_button[button] &&
-		old_button[button]);
+	return CheckButtonRange(button) && (!now_button[button] && old_button[button]);
 }
 
 //左トリガー取得

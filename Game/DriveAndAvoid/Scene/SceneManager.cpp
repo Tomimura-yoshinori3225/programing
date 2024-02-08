@@ -50,11 +50,12 @@ void SceneManager::Initialize()
 void SceneManager::Update()
 {
 	//フレーム開始時間（マイクロ秒）を取得
-	LONGLONG now_time = GetNowHiPerformanceCount();
+	LONGLONG start_time = GetNowHiPerformanceCount();
 
 	//メインループ
 	while (ProcessMessage() != -1)
 	{
+		LONGLONG now_time = GetNowHiPerformanceCount();
 		//1フレーム当たりの時間に到達したら、更新および描画処理を行う
 		if ((now_time - start_time) >= DELTA_SECOND)
 		{

@@ -159,7 +159,7 @@ float Player::GetHp() const
 //バリア枚数取得処理
 int Player::GetBarriarCount() const
 {
-	return this->barrier_const;
+	return this->barrier_count;
 }
 
 //バリア有効か？を取得

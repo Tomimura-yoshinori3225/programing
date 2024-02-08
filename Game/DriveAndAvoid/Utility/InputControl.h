@@ -4,31 +4,31 @@
 //入力管理処理
 class InputControl
 {
-private:
-	static bool now_button[16]; //現在フレーム入力値
-	static bool old_button[16]; //過去フレーム入力値
-	static float trigger [2]; //左右トリガー入力値
-	static Vector2D stick [2]; //左右スティック入力値
+	private:
+		static bool now_button[16]; //現在フレーム入力値
+		static bool old_button[16]; //過去フレーム入力値
+		static float trigger [2]; //左右トリガー入力値
+		static Vector2D stick [2]; //左右スティック入力値
 
-public:
-	static void update();      //更新処理
+	public:
+		static void update();      //更新処理
 
-	//ボタン入力処理
-	static bool GetButton(int button);      //押し続けている
-	static bool GetButtonDown(int button);      //押した瞬間
-	static bool GetButtonUp(int button);      //押した瞬間
+		//ボタン入力処理
+		static bool GetButton(int button);      //押し続けている
+		static bool GetButtonDown(int button);      //押した瞬間
+		static bool GetButtonUp(int button);      //押した瞬間
 
-	//トリガー入力所得処理
+		//トリガー入力所得処理
 
-	static Vector2D GetLeftTrigger();   //左トリガー
-	static Vector2D GetRightTrigger();   //右トリガー
+		static float GetLeftTrigger();   //左トリガー
+		static float GetRightTrigger();   //右トリガー
 
-	//スティック入力取得処理
-	static Vector2D GetLeftStick();    //左スティック
-	static Vector2D GetRightStick();    //右スティック
+		//スティック入力取得処理
+		static Vector2D GetLeftStick();    //左スティック
+		static Vector2D GetRightStick();    //右スティック
 
-private:
-	//ボタン配列範囲チェック
-	static bool CheckButtonRange(int button);
+	private:
+		//ボタン配列範囲チェック
+		static bool CheckButtonRange(int button);
 };
 

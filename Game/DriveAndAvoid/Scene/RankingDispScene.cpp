@@ -30,7 +30,7 @@ void RankingDispScene::Initialize()
 }
 
 //更新処理
-eSceneType RankingDispScene::Updata()
+eSceneType RankingDispScene::Update()
 {
 	//Bボタンがおされたら、タイトルに戻る
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_B))

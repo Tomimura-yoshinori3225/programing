@@ -2,7 +2,7 @@
 #include "../Utility/InputControl.h"
 #include "DxLib.h"
 
-TitleScene::TitleScene() :background_image(NULL), menu_image(NULL),
+TitleScene::TitleScene(): background_image(NULL), menu_image(NULL),
 cursor_image(NULL), menu_cursor(0)
 {
 
@@ -14,7 +14,7 @@ TitleScene::~TitleScene()
 }
 
 //‰Šú‰»ˆ—
-void TiteleScene::Initialize()
+void TitleScene::Initialize()
 {
 	//‰æ–Ê‚Ì“Ç‚İ‚İ
 	background_image = LoadGraph("Resource/images/Title.bmp");

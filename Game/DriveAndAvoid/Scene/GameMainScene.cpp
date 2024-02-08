@@ -4,9 +4,7 @@
 #include <math.h>
 
 GameMainScene::GameMainScene() :high_score(0), back_ground(NULL),
-barrier_image(NULL),mileage(0), player(nullptr),
-
-enemy(nullptr)
+barrier_image(NULL),mileage(0), player(nullptr),enemy(nullptr)
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -14,6 +12,8 @@ enemy(nullptr)
 		enemy_count[i] = NULL;
 	}
 }
+
+GameMainScene::~GameMainScene() { }
 
 //初期化処理
 void GameMainScene::Initialize()
@@ -42,7 +42,7 @@ void GameMainScene::Initialize()
 	}
 	//オブジェクトの生成
 	player = new Player;
-	enemy = new Enemy * [10];
+	enemy = new Enemy* [10];
 
 	//オブジェクトの初期化
 	player->Initialize();
@@ -161,8 +161,7 @@ void GameMainScene::Draw()const
 	float fx = 510.0f;
 	float fy = 390.0f;
 	DrawFormatStringF(fx, fy, GetColor(0, 0, 0), "FUEL METER");
-	DrawBoxAA(fx, fy, +20.0f, fx + (player->GetFuel() * 100 / 20000), fy +
-		40.0f, GetColor(255, 0, 0), TRUE);
+	DrawBoxAA(fx, fy, +20.0f, fx + (player->GetFuel() * 100 / 20000), fy + 40.0f, GetColor(255, 0, 0), TRUE);
 	DrawBoxAA(fx, fy + 20.0f, fx + 100.0f, fy + 40.0f, GetColor(0, 0, 0), FALSE);
 
 	//体力ゲージの描画

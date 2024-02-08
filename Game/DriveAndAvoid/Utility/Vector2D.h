@@ -26,24 +26,36 @@ public:
 	//演算子オーバーロード
 	Vector2D& operator = (const Vector2D& location)
 	{
+		this->x = location.x;
+		this->y = location.y;
+
+		return *this;
+	}
+	const Vector2D operator + (const Vector2D& location)
+	{
 		float x = this->x + location.x;
 		float y = this->y + location.y;
 
 		return Vector2D(x, y);
 	}
-
 	const Vector2D operator - (const Vector2D& location)
 	{
-		float x = this->*scalar;
-		float y = this->*scalar;
+		float x = this->x - location.x;
+		float y = this->y - location.y;
 
 		return Vector2D(x, y);
 	}
+	const Vector2D operator * (const float& scalar)
+	{
+		float x = this->x * scalar;
+		float y = this->y * scalar;
 
+		return Vector2D(x, y);
+	}
 	const Vector2D operator* (const Vector2D& location)
 	{
 		float x = this->x * location.x;
-		float y = this->y * location.y;
+		float y = this->x * location.y;
 
 		return Vector2D(x, y);
 	}
@@ -69,7 +81,13 @@ public:
 		}
 		return Vector2D(this->x / location.x, this->y / location.y);
 	}
+	Vector2D& operator += (const Vector2D& location)
+	{
+		this->x += location.x;
+		this->y += location.y;
 
+		return*this;
+	}
 	Vector2D& operator -= (const Vector2D& location)
 	{
 		this->x -= location.x;
