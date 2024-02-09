@@ -92,7 +92,7 @@ void Player::Update()
 void Player::Draw()
 {
 	//プレイヤー画像の描画
-	DrawRotaGraph(location.x, location.y, 1.0, angle, image, TRUE);
+	DrawRotaGraphF(location.x, location.y, 1.0, angle, image, TRUE);
 
 	//バリアが生成されていたら、描画を行う
 	if (barrier != nullptr)

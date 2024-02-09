@@ -4,7 +4,7 @@
 #include <math.h>
 
 GameMainScene::GameMainScene() :high_score(0), back_ground(NULL),
-barrier_image(NULL),mileage(0), player(nullptr),enemy(nullptr)
+barrier_image(NULL),mileage(0), player(nullptr), enemy(nullptr)
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -24,8 +24,7 @@ void GameMainScene::Initialize()
 	//画像読み込み
 	back_ground = LoadGraph("Resource/images/back.dmp");
 	barrier_image = LoadGraph("Reasource/images/barrier.png");
-	int result = LoadDivGraph("Reasource/images/car.dmp", 3, 3, 1, 63, 120,
-		enemy_image);
+	int result = LoadDivGraph("Reasource/images/car.dmp", 3, 3, 1, 63, 120,enemy_image);
 
 	//エラーチェック
 	if (back_ground == -1)
@@ -161,7 +160,7 @@ void GameMainScene::Draw()const
 	float fx = 510.0f;
 	float fy = 390.0f;
 	DrawFormatStringF(fx, fy, GetColor(0, 0, 0), "FUEL METER");
-	DrawBoxAA(fx, fy, +20.0f, fx + (player->GetFuel() * 100 / 20000), fy + 40.0f, GetColor(255, 0, 0), TRUE);
+	DrawBoxAA(fx, fy + 20.0f, fx + (player->GetFuel() * 100.0f / 20000.0f), fy + 40.0f, GetColor(255, 0, 0), TRUE);
 	DrawBoxAA(fx, fy + 20.0f, fx + 100.0f, fy + 40.0f, GetColor(0, 0, 0), FALSE);
 
 	//体力ゲージの描画

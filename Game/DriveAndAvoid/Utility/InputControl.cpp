@@ -4,11 +4,11 @@
 // 静的メンバ変数定義
 bool InputControl::now_button[16] = {};
 bool InputControl::old_button[16] = {};
-float InputControl:: trigger [2] = {};
-Vector2D InputControl:: stick [2] = {};
+float InputControl::trigger[2] = {};
+Vector2D InputControl::stick[2] = {};
 
 //入力機能：更新処理
-void InputControl::update()
+void InputControl::Update()
 {
 	//XInputコントローラーの入力値を取得する
 	XINPUT_STATE input_state = {};
@@ -65,15 +65,13 @@ void InputControl::update()
 //ボタン取得：押してる間
 bool InputControl::GetButton(int button)
 {
-	return CheckButtonRange(button) && (now_button[button] &&
-		old_button[button]);
+	return CheckButtonRange(button) && (now_button[button] && old_button[button]);
 }
 
 //ボタン取得：押した瞬間
 bool InputControl::GetButtonDown(int button)
 {
-	return CheckButtonRange(button) && (now_button[button] &&
-		!old_button[button]);
+	return CheckButtonRange(button) && (now_button[button] && !old_button[button]);
 }
 
 //ボタン取得：離した瞬間

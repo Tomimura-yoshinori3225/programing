@@ -1,8 +1,7 @@
 #include "Enemy.h"
 #include "DxLib.h"
 
-Enemy::Enemy(int type, int handle) :type(type), image(handle), speed(0.0f),
-location(0.0f), box_size(0.0f)
+Enemy::Enemy(int type, int handle) : type(type), image(handle), speed(0.0f),location(0.0f), box_size(0.0f)
 {
 
 }
@@ -37,7 +36,7 @@ void Enemy::Update(float speed)
 void Enemy::Draw() const
 {
 	//“G‰æ‘œ‚Ì•`‰æ
-	DrawRotaGraph(location.x, location.y, 1.0, 0.0, image, TRUE);
+	DrawRotaGraphF(location.x, location.y, 1.0, 0.0, image, TRUE);
 }
 
 void Enemy::Finalize()

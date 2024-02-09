@@ -1,25 +1,26 @@
 #pragma once
+
 #include "../Utility/Vector2D.h"
 
 class Enemy
 {
-	private:
-		int type;         //タイプ
-		int image;        //画像
-		float speed;      //速さ
-		Vector2D location;      //位置情報
-		Vector2D box_size;      //当たり判定の大きさ
+private:
+	int type;
+	int image;
+	float speed;
+	Vector2D location;
+	Vector2D box_size;
 
-	public:
-		Enemy(int type, int handle);
-		~Enemy();
+public:
+	Enemy(int type, int handle);
+	~Enemy();
 
-		void Initialize();        //初期化処理
-		void Update(float speed);    //更新距離
-		void Draw() const;        //描画処理
-		void Finalize();          //終了時処理
+	void Initialize();
+	void Update(float speed);
+	void Draw() const;
+	void Finalize();
 
-		int GetType() const;      //タイプ取得
-		Vector2D GetLocation() const;         //位置情報の取得
-		Vector2D GetBoxSize()  const;         //当たり判定の大きさを取得
+	int GetType() const;
+	Vector2D GetLocation() const;
+	Vector2D GetBoxSize() const;
 };

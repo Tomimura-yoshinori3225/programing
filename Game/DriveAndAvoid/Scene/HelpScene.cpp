@@ -33,6 +33,8 @@ eSceneType HelpScene::Update()
 	{
 		return eSceneType::E_TITLE;
 	}
+
+	return GetNowScene();
 }
 
 //•`‰æˆ—
